@@ -5,7 +5,7 @@ from os import path
 from datetime import datetime
 from webdriver_manager.chrome import ChromeDriverManager
 
-followers = 100 # Number of followers to scraping
+followers = 80 # Number of last followers to scraping
 account = "nasa"  # Account to scraping
 
 user = "astro_matheus" # Username to login in instagram
@@ -46,6 +46,7 @@ sleep(2)
 print(datetime.now())
 sleep(1)
 
+
 # Scraping one-to-one follower
 for i in range(1, followers):
     sleep(0.2)
@@ -62,16 +63,28 @@ for i in range(1, followers):
     dirname = path.dirname(path.abspath(__file__))
     txtfilename = path.join(dirname, account + "_followers.txt")
 
-    # Check if file exists
-    file_exists = path.isfile(txtfilename)
-
-    # Open file and write follower's username
+    # Open file
     f = open(txtfilename,'a')
-    f.write(str(follower_list[0]) + "\r\n")
+    followers_file = open(account + '_followers.txt', 'r')
+    list_followers = followers_file.readlines()
 
-    # Close file and print follower's username
+    # Check if string exists in file, if else write in .txt
+    str_no_exists = True
+    for j in range(0, len(list_followers)):
+        if str(follower_list[0]).strip() == str(list_followers[j]).strip():
+            str_no_exists = False
+            break
+    
+    # Printing follower username and if he exists
+    if str_no_exists:
+        f.write(follower_list[0] + "\r\n")
+        print('{}: {}'.format(i, follower_list[0]))
+    else:
+        print(str(i) + ": " + follower_list[0] + " exists on " + account + "_followers.txt")
+
+    # Close file
     f.close()
-    print('{};{}'.format(i, follower_list[0]))
+    followers_file.close()
 
     # Final time to scraping
     if i == (followers-1):

@@ -57,22 +57,34 @@ for i in range(1, following):
 
     # Getting the info of followed
     followed_list = followed.text.split()
+    
 
     # Creating a .txt file to "save" following
     dirname = path.dirname(path.abspath(__file__))
     txtfilename = path.join(dirname, account + "_following.txt")
 
-    # Check if file exists
-    file_exists = path.isfile(txtfilename)
-
-    # Open file and write followed's username
+    # Open file and write follower's username
     f = open(txtfilename,'a')
-    f.write(str(followed_list[0]) + "\r\n")
+    followings_file = open(account + '_following.txt', 'r')
+    list_followers = followings_file.readlines()
 
-    # Close file and print followed's username
+    # Check if string exists in file, if else write in .txt
+    str_no_exists = True
+    for j in range(0, len(list_followers)):
+        if str(followed_list[0]).strip() == str(list_followers[j]).strip():
+            str_no_exists = False
+            break
+    
+    # Printing followed username and if he exists
+    if str_no_exists:
+        f.write(followed_list[0] + "\r\n")
+        print('{}: {}'.format(i, followed_list[0]))
+    else:
+        print(str(i) + ": " + followed_list[0] + " exists on " + account + "_following.txt")
+
+    # Close file
     f.close()
-    print('{};{}'.format(i, followed_list[0]))
-
+    followings_file.close()
     # Final time to scraping
     if i == (following-1):
         print(datetime.now())
