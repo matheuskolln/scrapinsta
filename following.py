@@ -5,11 +5,11 @@ from os import path
 from datetime import datetime
 from webdriver_manager.chrome import ChromeDriverManager
 
-following = 100 # Number of following accounts to scraping
+following = 80 # Number of following accounts to scraping
 account = "nasa"  # Account to scraping
 
-user = "JKuhdsa89" # Username to login in instagram
-password = "JKuhdsa8933" # Password for the username account 
+user = "astro_matheus" # Username to login in instagram
+password = "hire_me_nasa" # Password for the username account 
 
 # Configuring and running webdriver
 options = webdriver.ChromeOptions()

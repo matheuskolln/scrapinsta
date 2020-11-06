@@ -8,8 +8,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 followers = 100 # Number of followers to scraping
 account = "nasa"  # Account to scraping
 
-user = "username" # Username to login in instagram
-password = "password" # Password for the username account 
+user = "astro_matheus" # Username to login in instagram
+password = "hire_me_nasa" # Password for the username account 
 
 # Configuring and running webdriver
 options = webdriver.ChromeOptions()
