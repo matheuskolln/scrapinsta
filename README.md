@@ -1,10 +1,16 @@
 # ScrapInsta
+A script to scraping data from Instagram
 
-## Usage
+## Scraping user followers
+### Usage
 
-Change parameters followers, user, password to use.
+Change parameters in <b>followers.py</b>:<br>
+<br> <b>followers</b>: number of followers for scraping
+<br> <b>user</b>: user account to login 
+<br> <b>password</b>: password to login
 
-### Contact:  
+
+## Contact:  
 
 <a href="https://www.linkedin.com/in/matheuskolln"><img src="https://icons-for-free.com/iconfiles/png/512/linked+linkedin+logo+social+icon-1320191784782940875.png" width="16"></img></a> [LinkedIn](https://www.linkedin.com/in/matheuskolln)  
 
@@ -12,4 +18,4 @@ Change parameters followers, user, password to use.
 
 <a href="https://www.instagram.com/1matheus4/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Instagram-Icon.png/1025px-Instagram-Icon.png" width="16"></img></a> [Instagram](https://www.instagram.com/1matheus4)  
 
-<a href="mailto:matheuzhenrik@gmail.com"><img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/mail.png" width="16"></img></a> [Email](mailto:matheuzhenrik@gmail.com)  
+<a href="mailto:matheuzhenrik@gmail.com"><img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/mail.png" width="16"></img></a> [E-mail](mailto:matheuzhenrik@gmail.com)  
