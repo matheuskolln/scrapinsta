@@ -9,6 +9,13 @@ Change parameters in <b>followers.py</b>:<br>
 <br> <b>user</b>: user account to login 
 <br> <b>password</b>: password to login
 
+## Scraping user following account
+### Usage
+
+Change parameters in <b>following.py</b>:<br>
+<br> <b>followers</b>: number of following accounts for scraping
+<br> <b>user</b>: user account to login 
+<br> <b>password</b>: password to login
 
 ## Contact:  
 
