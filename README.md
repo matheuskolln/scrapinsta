@@ -15,7 +15,6 @@ A script to scraping data from Instagram
 </ul>
 
 ## Scraping user following account
-### Usage
 
 ### Usage
 <ol>
