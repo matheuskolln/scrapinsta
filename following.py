@@ -4,12 +4,12 @@ from time import sleep
 from os import path
 from datetime import datetime
 from webdriver_manager.chrome import ChromeDriverManager
+from config import login, decrypt
 
 following = 80 # Number of following accounts to scraping
 account = "nasa"  # Account to scraping
 
-user = "astro_matheus" # Username to login in instagram
-password = "hire_me_nasa" # Password for the username account 
+user = login() # Getting the info to login
 
 # Configuring and running webdriver
 options = webdriver.ChromeOptions()
@@ -26,8 +26,8 @@ user_input = driver.find_element_by_css_selector("input[name='username']")
 password_input = driver.find_element_by_css_selector("input[name='password']")
 
 # Inserting username and password to login
-user_input.send_keys(user)
-password_input.send_keys(password)
+user_input.send_keys(user[1])
+password_input.send_keys(decrypt(user[0], user[2]))
 
 # Finding login button and clicking in him
 login_button = driver.find_element_by_xpath("//button[@type='submit']")
