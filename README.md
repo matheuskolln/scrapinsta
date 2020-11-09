@@ -3,19 +3,31 @@ A script to scraping data from Instagram
 
 ## Scraping user followers
 ### Usage
-
-Change parameters in <b>followers.py</b>:<br>
-<br> <b>followers</b>: number of followers for scraping
-<br> <b>user</b>: user account to login 
-<br> <b>password</b>: password to login
+<ol>
+  <li>Import get_user_followers from <b>followers.py</b>:</li><br>
+  <li>Call function <b>get_user_follower(account, amount, method, print_followers)</li></b>
+</ol>
+<ul>
+  <br> <b>account</b>: Account which want to get user followers
+  <br> <b>amount</b>: Number of followers to scraping 
+  <br> <b>method</b>: By default is 'list'(returns a list), but can be 'txt' this will write a .txt with user followers
+  <br> <b>print_followers</b>: By default is 'false'(don't print followers), but can be 'true' this will print followers
+</ul>
 
 ## Scraping user following account
 ### Usage
 
-Change parameters in <b>following.py</b>:<br>
-<br> <b>followers</b>: number of following accounts for scraping
-<br> <b>user</b>: user account to login 
-<br> <b>password</b>: password to login
+### Usage
+<ol>
+  <li>Import get_user_followings from <b>following.py</b>:</li><br>
+  <li>Call function <b>get_user_followings(account, amount, method, print_following)</li></b>
+</ol>
+<ul>
+  <br> <b>account</b>: Account which want to get users followed
+  <br> <b>amount</b>: Number of users followed to scraping 
+  <br> <b>method</b>: By default is 'list'(returns a list), but can be 'txt' this will write a .txt with users followeds
+  <br> <b>print_following</b>: By default is 'false'(don't print users followeds), but can be 'true' this will print users followeds
+</ul>
 
 ## Contact:  
 

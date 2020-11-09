@@ -6,16 +6,21 @@ from cryptography.fernet import Fernet
 from getpass import getpass
 
 def login():
+    # Getting username and password to login
     user = input('Username: ')
     password = getpass('Password: ')
-
+    # Encrypting password
     bpass = bytes(password, 'utf-8')
     key = Fernet.generate_key()
     f = Fernet(key)
 
     password_crypted = f.encrypt(bpass)
 
-    driver = create_driver()
+    # Configuring and running webdriver
+    options = webdriver.ChromeOptions()
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16D57"')
+    driver = webdriver.Chrome(ChromeDriverManager().install())
 
     # Getting the login page of instagram
     driver.get('https://www.instagram.com/accounts/login/')
@@ -34,13 +39,4 @@ def login():
     login_button.click()
     sleep(3) 
     
-    return driver
-
-def create_driver():
-    # Configuring and running webdriver
-    options = webdriver.ChromeOptions()
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument('--user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16D57"')
-    driver = webdriver.Chrome(ChromeDriverManager().install())
-
     return driver
