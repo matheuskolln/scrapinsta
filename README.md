@@ -4,28 +4,52 @@ A script to scraping data from Instagram
 ## Scraping user followers
 ### Usage
 <ol>
-  <li>Import get_user_followers from <b>followers.py</b>:</li><br>
-  <li>Call function <b>get_user_follower(account, amount, method, print_followers)</li></b>
+  <li>from scrapinsta import <b>Scrapinsta</b> and instantiate</li><br>
+  <li>Call function Scrapinsta.<b>get_user_follower(account, amount, method, print_followers)</li></b>
 </ol>
 <ul>
   <br> <b>account</b>: Account which want to get user followers
   <br> <b>amount</b>: Number of followers to scraping 
   <br> <b>method</b>: By default is 'list'(returns a list), but can be 'txt' this will write a .txt with user followers
   <br> <b>print_followers</b>: By default is 'false'(don't print followers), but can be 'true' this will print followers
+  <br><br>Example code:<br>
+  <pre> 
+    from scrapinsta import Scrapinsta<br>
+    account = 'nasa' # Account to get info
+    amount = 50 <br>
+    # Instantiate Scrapinsta
+    s = Scrapinsta()<br>
+    # Testing: method = 'list'
+    list_followers = s.get_user_followers(account, amount, method='list', print_followers='true')<br>
+    # Testing: method = 'txt'
+    s.get_user_followers(account, amount, method='txt', print_followers='true')
+  </pre>
 </ul>
 
 ## Scraping user following account
 
 ### Usage
 <ol>
-  <li>Import get_user_followings from <b>following.py</b>:</li><br>
-  <li>Call function <b>get_user_followings(account, amount, method, print_following)</li></b>
+  <li>from scrapinsta import <b>Scrapinsta</b> and instantiate</li><br>
+  <li>Call function Scrapinsta.<b>get_user_followings(account, amount, method, print_following)</li></b>
 </ol>
 <ul>
   <br> <b>account</b>: Account which want to get users followed
   <br> <b>amount</b>: Number of users followed to scraping 
   <br> <b>method</b>: By default is 'list'(returns a list), but can be 'txt' this will write a .txt with users followed
   <br> <b>print_following</b>: By default is 'false'(don't print users followed), but can be 'true' this will print users followed
+  <br><br>Example code:<br>
+  <pre> 
+    from scrapinsta import Scrapinsta<br>
+    account = 'nasa' # Account to get info
+    amount = 50 <br>
+    # Instantiate Scrapinsta
+    s = Scrapinsta()<br>
+    # Testing: method = 'list'
+    list_following = s.get_user_followings(account, amount, method='list', print_following='true')
+    # Testing: method = 'txt'
+    s.get_user_followings(account, amount, method='txt', print_following='true')
+  </pre>
 </ul>
 
 ## Contact:  
