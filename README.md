@@ -25,8 +25,8 @@ A script to scraping data from Instagram
 <ul>
   <br> <b>account</b>: Account which want to get users followed
   <br> <b>amount</b>: Number of users followed to scraping 
-  <br> <b>method</b>: By default is 'list'(returns a list), but can be 'txt' this will write a .txt with users followeds
-  <br> <b>print_following</b>: By default is 'false'(don't print users followeds), but can be 'true' this will print users followeds
+  <br> <b>method</b>: By default is 'list'(returns a list), but can be 'txt' this will write a .txt with users followed
+  <br> <b>print_following</b>: By default is 'false'(don't print users followed), but can be 'true' this will print users followed
 </ul>
 
 ## Contact:  
