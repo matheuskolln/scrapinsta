@@ -1,0 +1,1 @@
+from scrapinsta.scrapinsta import Scrapinsta

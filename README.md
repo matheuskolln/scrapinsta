@@ -1,7 +1,20 @@
 # ScrapInsta
 A script to scraping data from Instagram
+## Requirements
+<ul>
+  You can install one-by-one:
+  <li>selenium
+  <pre>pip install selenium</pre></li>
+  <li>webdriver_manager
+  <pre>pip install webdriver_manager</pre></li>
+  <li>cryptography
+  <pre>pip install cryptography</pre></li>
+  Or install by requirements.txt
+  <li><pre>pip install -r requirements.txt</pre></li>
+</ul>
 
 ## Scraping user followers
+
 ### Usage
 <ol>
   <li>from scrapinsta import <b>Scrapinsta</b> and instantiate</li><br>
@@ -61,3 +74,4 @@ A script to scraping data from Instagram
 <a href="https://www.instagram.com/1matheus4/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Instagram-Icon.png/1025px-Instagram-Icon.png" width="16"></img></a> [Instagram](https://www.instagram.com/1matheus4)  
 
 <a href="mailto:matheuzhenrik@gmail.com"><img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/mail.png" width="16"></img></a> [E-mail](mailto:matheuzhenrik@gmail.com)  
+
