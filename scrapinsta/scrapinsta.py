@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
-from os import path
+from os import path, getcwd
 from datetime import datetime
 from cryptography.fernet import Fernet
 from getpass import getpass
@@ -91,7 +91,7 @@ class Scrapinsta:
 
             # Checking if method is txt, if true creating a .txt file to "save" followers
             if method == 'txt':
-                dirname = path.dirname(path.abspath(__file__))
+                dirname = getcwd()
                 txtfilename = path.join(dirname, account + "_followers.txt")
 
                 # Open file
@@ -181,7 +181,7 @@ class Scrapinsta:
             # Checking if method is txt, if true creating a .txt file to "save" user followed
             if method == 'txt':
                 # Creating a .txt file to "save" followings
-                dirname = path.dirname(path.abspath(__file__))
+                dirname = getcwd()
                 txtfilename = path.join(dirname, account + "_following.txt")
 
                 # Open file
