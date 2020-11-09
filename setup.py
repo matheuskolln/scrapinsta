@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="scrapinsta", # Replace with your own username
-    version="0.1",
+    version="0.1.1",
     author="Matheus Kolln",
     author_email="matheuzhenrik@gmail.com",
     description="A package to scraping data from Instagram",
