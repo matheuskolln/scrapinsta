@@ -96,7 +96,7 @@ class Scrapinsta:
 
                 # Open file
                 f = open(txtfilename,'a')
-                followers_file = open(account + '_followers.txt', 'r')
+                followers_file = open(txtfilename, 'r')
                 list_followers = followers_file.readlines()
 
                 # Check if string exists in file, if else write in .txt
@@ -186,7 +186,7 @@ class Scrapinsta:
 
                 # Open file
                 f = open(txtfilename,'a')
-                following_file = open(account + '_following.txt', 'r')
+                following_file = open(txtfilename, 'r')
                 list_following = following_file.readlines()
 
                 # Check if string exists in file, if else write in .txt
