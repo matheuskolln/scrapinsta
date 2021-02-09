@@ -81,7 +81,7 @@ class Scrapinsta:
         for i in range(1, amount+1):
             sleep(0.2)
             # Finding the follower username
-            follower = driver.find_element_by_xpath('//html/body/div[5]/div/div/div[2]/ul/div/li[{0}]'.format(i))
+            follower = driver.find_element_by_xpath('//html/body/div[4]/div/div/div[2]/ul/div/li[{0}]'.format(i))
             
             # Scroll window to find elements
             driver.execute_script("arguments[0].scrollIntoView();", follower)
@@ -108,7 +108,7 @@ class Scrapinsta:
                 
                 # Writing in .txt and printing(if printing_followers is true)
                 if str_no_exists:
-                    f.write(follower_list[0] + "\r\n")
+                    f.write(follower_list[0] + "\r")
                     if print_followers == 'true':
                         print('{}: {}'.format(i, follower_list[0]))
                 elif print_followers == 'true' and str_no_exists == False:
@@ -170,7 +170,8 @@ class Scrapinsta:
         for i in range(1, amount+1):
             sleep(0.2)
             # Finding the username of user followed
-            following = driver.find_element_by_xpath('//html/body/div[5]/div/div/div[2]/ul/div/li[{0}]'.format(i))
+
+            following = driver.find_element_by_xpath('//html/body/div[4]/div/div/div[2]/ul/div/li[{0}]'.format(i))
             
             # Scroll window to find elements
             driver.execute_script("arguments[0].scrollIntoView();", following)
@@ -198,7 +199,7 @@ class Scrapinsta:
                 
                 # Writing in .txt and printing(if printing_following is true)
                 if str_no_exists:
-                    f.write(following_list[0] + "\r\n")
+                    f.write(following_list[0] + "\r")
                     if print_following == 'true':
                         print('{}: {}'.format(i, following_list[0]))
                 elif print_following == 'true' and str_no_exists == False:
