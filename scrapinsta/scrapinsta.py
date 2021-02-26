@@ -11,7 +11,9 @@ class Scrapinsta:
     def __init__(self):
         pass
 
-    def __login(self):
+    def quit(self):
+        self.driver.close()
+    def login(self):
         # Getting username and password to login
         user = input('Username: ')
         password = getpass('Password: ')
@@ -27,51 +29,52 @@ class Scrapinsta:
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16D57"')
         driver = webdriver.Chrome(ChromeDriverManager().install())
+        self.driver = driver
 
         # Getting the login page of instagram
-        driver.get('https://www.instagram.com/accounts/login/')
-        sleep(3)
+        self.driver.get('https://www.instagram.com/accounts/login/')
+        sleep(6)
 
         # Finding inputs to login on instagram
-        user_input = driver.find_element_by_css_selector("input[name='username']")
-        password_input = driver.find_element_by_css_selector("input[name='password']")
+        user_input = self.driver.find_element_by_css_selector("input[name='username']")
+        password_input = self.driver.find_element_by_css_selector("input[name='password']")
 
         # Inserting username and password to login
         user_input.send_keys(user)
         password_input.send_keys(str(f.decrypt(password_crypted), 'utf-8'))
 
         # Finding login button and clicking in him
-        login_button = driver.find_element_by_xpath("//button[@type='submit']")
+        login_button = self.driver.find_element_by_xpath("//button[@type='submit']")
         login_button.click()
-        sleep(3) 
-        
-        return driver
+        sleep(6) 
 
-    def get_user_followers(self, account, amount=100, method='list', print_followers='false'):
+
+    def get_user_followers(self, account, amount=100, method='list', print_followers='false', sleeptime=0.2):
         """
         account: Account which want to get user followers\n
         amount: Number of followers to scraping\n
         method: By default is 'list'(returns a list), but can be 'txt' this will write a .txt with user followers\n
-        print_followers: By default is 'false'(don't print followers), but can be 'true' this will print followers
+        print_followers: By default is 'false'(don't print followers), but can be 'true' this will print followers\n
+        sleeptime: By default is 0.2 (get user, wait 0.2s and get another user), but can be any number need to be greater than 0
         """
         if method not in ('txt', 'list'):
             raise ValueError("Parameter method need to be 'txt' or 'list'.")
         if print_followers not in ('false', 'true'):
             raise ValueError("Parameter print_followers need to be 'false' or 'true'.")
-
-        driver = self.__login() # Getting the info to login and login
+        if sleeptime < 0:
+            raise ValueError("Parameter sleeptime need to be greater than 0")
 
         # Going to account page to scraping
-        driver.get('https://www.instagram.com/%s' % account)
-        sleep(2) 
+        self.driver.get('https://www.instagram.com/%s' % account)
+        sleep(6) 
 
         # Finding the "button" to list followers
-        driver.find_element_by_xpath('//a[contains(@href, "followers")]').click()
-        sleep(2)
+        self.driver.find_element_by_xpath('//a[contains(@href, "followers")]').click()
+        sleep(6)
 
         # Initial time for scraping
         print(datetime.now())
-        sleep(1)
+        sleep(6)
         
         # Checking if method is list, if true creating a list to storage followers
         if method == 'list':
@@ -79,12 +82,12 @@ class Scrapinsta:
 
         # Scraping one-to-one follower
         for i in range(1, amount+1):
-            sleep(0.2)
+            sleep(sleeptime)
             # Finding the follower username
-            follower = driver.find_element_by_xpath('//html/body/div[4]/div/div/div[2]/ul/div/li[{0}]'.format(i))
+            follower = self.driver.find_element_by_xpath('//html/body/div[5]/div/div/div[2]/ul/div/li[{0}]'.format(i))
             
             # Scroll window to find elements
-            driver.execute_script("arguments[0].scrollIntoView();", follower)
+            self.driver.execute_script("arguments[0].scrollIntoView();", follower)
 
             # Getting the info of follower
             follower_list = follower.text.split()
@@ -127,9 +130,6 @@ class Scrapinsta:
             # Final time to scraping
             if i == (amount):
                 print(datetime.now())
-                
-        # Close webdriver
-        driver.close()
 
         if method == 'list':
             return list_followers
@@ -137,30 +137,32 @@ class Scrapinsta:
             print(account + "_followers.txt has been created.")
             return
 
-    def get_user_followings(self, account, amount=100, method='list', print_following='false'):
+    def get_user_followings(self, account, amount=100, method='list', print_following='false', sleeptime=0.2):
         """
         account: Account which want to get users followed\n
         amount: Number of users followed to scraping\n
         method: By default is 'list'(returns a list), but can be 'txt' this will write a .txt with users followed\n
-        print_following: By default is 'false'(don't print users followed), but can be 'true' this will print users followed
+        print_following: By default is 'false'(don't print users followed), but can be 'true' this will print users followed\n
+        sleeptime: By default is 0.2 (get user, wait 0.2s and get another user), but can be any number need to be greater than 0
         """
         if method not in ('txt', 'list'):
             raise ValueError("Parameter method need to be 'txt' or 'list'.")
         if print_following not in ('false', 'true'):
             raise ValueError("Parameter print_following need to be 'false' or 'true'.")
-        driver = self.__login() # Getting the info to login and login
+        if sleeptime < 0:
+            raise ValueError("Parameter sleeptime need to be greater than 0")
 
         # Going to account page to scraping
-        driver.get('https://www.instagram.com/%s' % account)
-        sleep(2) 
+        self.driver.get('https://www.instagram.com/%s' % account)
+        sleep(6) 
 
         # Finding the "button" to list followings
-        driver.find_element_by_xpath('//a[contains(@href, "following")]').click()
-        sleep(2)
+        self.driver.find_element_by_xpath('//a[contains(@href, "following")]').click()
+        sleep(6)
 
         # Initial time for scraping
         print(datetime.now())
-        sleep(1)
+        sleep(6)
 
         # Checking if method is list, if true creating a list to storage user followed
         if method == 'list':
@@ -171,10 +173,10 @@ class Scrapinsta:
             sleep(0.2)
             # Finding the username of user followed
 
-            following = driver.find_element_by_xpath('//html/body/div[4]/div/div/div[2]/ul/div/li[{0}]'.format(i))
+            following = self.driver.find_element_by_xpath('//html/body/div[5]/div/div/div[2]/ul/div/li[{0}]'.format(i))
             
             # Scroll window to find elements
-            driver.execute_script("arguments[0].scrollIntoView();", following)
+            self.driver.execute_script("arguments[0].scrollIntoView();", following)
 
             # Getting the info of following
             following_list = following.text.split()
@@ -217,9 +219,6 @@ class Scrapinsta:
             # Final time to scraping
             if i == (amount):
                 print(datetime.now())
-
-        # Close webdriver
-        driver.close()
 
         if method == 'list':
             return list_following
