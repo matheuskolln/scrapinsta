@@ -17,10 +17,6 @@ class IWebdriver(ABC):
         pass
 
     @abstractmethod
-    def get_driver(self) -> bool:
-        pass
-
-    @abstractmethod
     def quit_driver(self) -> Optional[bool]:
         pass
 
@@ -29,7 +25,7 @@ class IWebdriver(ABC):
         pass
 
     @abstractmethod
-    def find_element(self, selector: str, type: str) -> Optional[object]:
+    def find_element(self, selector: str, type: str) -> WebElement:
         pass
 
     @abstractmethod

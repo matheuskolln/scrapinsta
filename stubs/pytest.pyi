@@ -1,0 +1,3 @@
+from typing import ContextManager, Type
+
+def raises(exc_type: Type[Exception]) -> ContextManager[None]: ...

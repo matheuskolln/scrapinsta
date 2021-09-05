@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "scrapinsta"
+version = "0.0.2"
+description = "A package to scraping data from Instagram"
+authors = ["Matheus Kolln <matheuzhenrik@gmail.com>"]
+license = "OSI Approved, MIT License"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+selenium = "^3.141.0"
+webdriver-manager = "^3.4.2"
+cryptography = "^3.4.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+mypy = "^0.910"
+black = "^21.8b0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

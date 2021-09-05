@@ -1,19 +1,13 @@
-from typing import Optional, Type
+from typing import Optional
 from selenium import webdriver
+from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
-from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager  # type: ignore
 from scrapinsta.domain.providers.IWebdriver import IWebdriver
-
-OPTIONS = {
-    "arguments": [
-        "--ignore-certificate-errors",
-        '--user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16D57"',
-    ]
-}
 
 
 class Webdriver(IWebdriver):
-    driver: webdriver
+    driver: WebDriver
     options = webdriver.ChromeOptions
 
     @property
@@ -23,10 +17,10 @@ class Webdriver(IWebdriver):
     def __init__(self):
         self.options = webdriver.ChromeOptions()
 
-        for option in OPTIONS["arguments"]:
-            self.options.add_argument(option)
-
-        self.driver = None
+        self.driver = webdriver.Chrome(
+            ChromeDriverManager().install(), options=self.options
+        )
+        self.clear_cache()
 
     def open_url(self, url: str) -> None:
         if self.driver is None:
@@ -37,24 +31,14 @@ class Webdriver(IWebdriver):
 
         self.driver.get(url)
 
-    def get_driver(self) -> bool:
-        if self.driver is None:
-            self.driver = webdriver.Chrome(
-                ChromeDriverManager().install(), options=self.options
-            )
-            return True
-
-        return False
-
     def quit_driver(self) -> Optional[bool]:
         if self.driver is None:
             return False
 
         self.driver.quit()
-        self.driver = None
         return True
 
-    def find_element(self, selector: str, type: str) -> Optional[object]:
+    def find_element(self, selector: str, type: str) -> WebElement:
         if self.driver is None:
             raise Exception("Webdriver is not opened, please get_driver first!")
 
@@ -91,3 +75,9 @@ class Webdriver(IWebdriver):
             )
 
         element.click()
+
+    def clear_cache(self) -> None:
+        if self.driver is None:
+            raise Exception("Webdriver is not opened, please get_driver first!")
+
+        self.driver.delete_all_cookies()

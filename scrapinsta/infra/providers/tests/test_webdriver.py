@@ -3,49 +3,19 @@ import pytest
 
 
 class TestWebdriver:
-    def test_get_webdriver(self):
-        webdriver = Webdriver()
-        assert webdriver.client is None
-
-        response = webdriver.get_driver()
-        assert response is True
-        assert webdriver.client is not None
-
-        webdriver.quit_driver()
-
     def test_quit_webdriver(self):
         webdriver = Webdriver()
-        webdriver.get_driver()
         response = webdriver.quit_driver()
 
-        assert webdriver.client is None
         assert response is True
-
-    def test_quit_webdriver_should_throw_error_when_dont_get_driver_before(self):
-        webdriver = Webdriver()
-        response = webdriver.quit_driver()
-        assert response is False
 
     def test_open_url(self):
         webdriver = Webdriver()
-        webdriver.get_driver()
         webdriver.open_url("https://www.github.com/matheuskolln/scrapinsta")
         webdriver.quit_driver()
 
-    def test_open_url_should_throw_error_when_dont_get_driver_before(self):
-        webdriver = Webdriver()
-
-        with pytest.raises(Exception) as execinfo:
-            webdriver.open_url("https://www.github.com/matheuskolln/scrapinsta")
-
-        assert (
-            str(execinfo.value) == "Webdriver is not opened, please get_driver first!"
-        )
-        assert webdriver.client is None
-
     def test_open_url_should_throw_error_when_url_is_not_valid(self):
         webdriver = Webdriver()
-        webdriver.get_driver()
 
         with pytest.raises(TypeError) as execinfo:
             webdriver.open_url(1234)
@@ -53,11 +23,9 @@ class TestWebdriver:
         webdriver.quit_driver()
 
         assert str(execinfo.value) == "URL need to be a string!"
-        assert webdriver.client is None
 
     def test_find_element_with_css(self):
         webdriver = Webdriver()
-        webdriver.get_driver()
         webdriver.open_url("https://www.github.com/matheuskolln/scrapinsta")
         element = webdriver.find_element(selector="a.url.fn", type="css")
 
@@ -68,7 +36,6 @@ class TestWebdriver:
 
     def test_find_element_with_xpath(self):
         webdriver = Webdriver()
-        webdriver.get_driver()
         webdriver.open_url("https://www.github.com/matheuskolln/scrapinsta")
         element = webdriver.find_element(
             selector='//*[@id="repository-container-header"]/div[1]/div/h1/span[1]/a',
@@ -82,7 +49,6 @@ class TestWebdriver:
 
     def test_find_element_should_throw_an_error_with_invalid_type(self):
         webdriver = Webdriver()
-        webdriver.get_driver()
         webdriver.open_url("https://www.github.com/matheuskolln/scrapinsta")
 
         with pytest.raises(ValueError) as execinfo:
@@ -98,7 +64,6 @@ class TestWebdriver:
 
     def test_send_keys(self):
         webdriver = Webdriver()
-        webdriver.get_driver()
         webdriver.open_url("https://github.com/search")
         input = webdriver.find_element(
             selector='//*[@id="search_form"]/div/div/input[1]', type="xpath"
@@ -108,7 +73,6 @@ class TestWebdriver:
 
     def test_send_keys_should_throw_an_error_with_invalid_element(self):
         webdriver = Webdriver()
-        webdriver.get_driver()
         webdriver.open_url("https://github.com/search")
 
         with pytest.raises(TypeError) as execinfo:
@@ -123,7 +87,6 @@ class TestWebdriver:
 
     def test_click(self):
         webdriver = Webdriver()
-        webdriver.get_driver()
         webdriver.open_url("https://github.com/search")
 
         input = webdriver.find_element(
@@ -140,7 +103,6 @@ class TestWebdriver:
 
     def test_click_should_throw_an_error_with_invalid_element(self):
         webdriver = Webdriver()
-        webdriver.get_driver()
         webdriver.open_url("https://github.com/search")
 
         with pytest.raises(TypeError) as execinfo:
